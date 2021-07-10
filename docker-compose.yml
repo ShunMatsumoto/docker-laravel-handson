@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    build: ./infra/php
+    build: ./docker/php
     volumes:
       - ./backend:/work
 
@@ -13,3 +13,12 @@ services:
       - ./backend:/work
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     working_dir: /work
+
+  # 追記
+  db:
+    build: ./docker/mysql
+    volumes:
+      - db-store:/var/lib/mysql
+
+volumes:
+  db-store:
